@@ -1,0 +1,14 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "mail.fair.mail",
+               "sha256_cert_fingerprints": ["DD:80:CD:1D:BF:A2:E1:BD:58:9E:7E:7B:F0:14:29:CB:6E:98:EE:23:07:42:C7:76:A4:74:B4:66:72:8A:95:FA"] }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "mail.fair.mail.debug",
+               "sha256_cert_fingerprints": ["DD:80:CD:1D:BF:A2:E1:BD:58:9E:7E:7B:F0:14:29:CB:6E:98:EE:23:07:42:C7:76:A4:74:B4:66:72:8A:95:FA"] }
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": { "namespace": "web", "site": "https://oauth.faircode.eu" }
+}]
