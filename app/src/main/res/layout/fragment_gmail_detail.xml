@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.login.account.gmail.GmailFragment">
+
+    <Button
+        android:id="@+id/btn_login_gmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <eu.faircode.email.EditTextPlain
+        android:id="@+id/edt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:autofillHints="name"
+        android:hint="@string/title_identity_name"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName|textCapWords"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <eu.faircode.email.FixedTextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:text="error message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="?attr/colorWarning"
+        android:textIsSelectable="true" />
+
+    <eu.faircode.email.ContentLoadingProgressBar
+        android:id="@+id/pb_select"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="12dp"
+        android:indeterminate="true" />
+
+    <Button
+        android:id="@+id/btn_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:drawableEnd="@drawable/twotone_account_circle_24"
+        android:drawablePadding="6dp"
+        android:tag="disable"
+        android:text="@string/title_setup_select_account" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

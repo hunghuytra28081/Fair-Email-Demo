@@ -38,7 +38,7 @@ public class GmailState {
     private String token;
     private long acquired;
 
-    static final String TYPE_GOOGLE = "com.google";
+    public static final String TYPE_GOOGLE = "com.google";
     private static final long TOKEN_LIFETIME = 45 * 60 * 1000L; // milliseconds
 
     private GmailState(String token, long acquired) {
@@ -126,7 +126,7 @@ public class GmailState {
         }
     }
 
-    static GmailState jsonDeserialize(@NonNull String password) {
+    public static GmailState jsonDeserialize(@NonNull String password) {
         try {
             JSONObject jobject = new JSONObject(password);
             String token = jobject.getString("token");

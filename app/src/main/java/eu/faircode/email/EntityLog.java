@@ -69,7 +69,7 @@ public class EntityLog {
     private static final ExecutorService executor =
             Helper.getBackgroundExecutor(1, "log");
 
-    static void log(final Context context, String data) {
+    public static void log(final Context context, String data) {
         log(context, Type.General, data);
     }
 

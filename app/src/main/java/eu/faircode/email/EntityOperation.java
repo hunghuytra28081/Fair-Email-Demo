@@ -537,7 +537,7 @@ public class EntityOperation {
         sync(context, fid, false, force);
     }
 
-    static void sync(Context context, long fid, boolean foreground) {
+    public static void sync(Context context, long fid, boolean foreground) {
         sync(context, fid, foreground, false);
     }
 

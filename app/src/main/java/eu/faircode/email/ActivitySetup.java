@@ -138,8 +138,8 @@ public class ActivitySetup extends ActivityBase implements FragmentManager.OnBac
     static final int REQUEST_SOUND_OUTBOUND = 2;
     static final int REQUEST_EXPORT = 3;
     static final int REQUEST_IMPORT = 4;
-    static final int REQUEST_CHOOSE_ACCOUNT = 5;
-    static final int REQUEST_DONE = 6;
+    public static final int REQUEST_CHOOSE_ACCOUNT = 5;
+    public static final int REQUEST_DONE = 6;
     static final int REQUEST_IMPORT_CERTIFICATE = 7;
     static final int REQUEST_OAUTH = 8;
     static final int REQUEST_STILL = 9;

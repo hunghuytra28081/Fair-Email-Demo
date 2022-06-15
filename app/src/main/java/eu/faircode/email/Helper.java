@@ -202,7 +202,7 @@ public class Helper {
     private static final String[] ROMAN_10 = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
     private static final String[] ROMAN_1 = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
 
-    static final Pattern EMAIL_ADDRESS = Pattern.compile(
+    public static final Pattern EMAIL_ADDRESS = Pattern.compile(
             "[\\S&&[^\"@]]{1,256}" +
                     "\\@" +
                     "[\\p{L}0-9][\\p{L}0-9\\-\\_]{0,64}" +
@@ -380,7 +380,7 @@ public class Helper {
 
     // Features
 
-    static boolean hasPermission(Context context, String name) {
+    public static boolean hasPermission(Context context, String name) {
         return (ContextCompat.checkSelfPermission(context, name) == PackageManager.PERMISSION_GRANTED);
     }
 
@@ -496,7 +496,7 @@ public class Helper {
         }
     }
 
-    static boolean isPlayStoreInstall() {
+    public static boolean isPlayStoreInstall() {
         return BuildConfig.PLAY_STORE_RELEASE;
     }
 
@@ -596,7 +596,7 @@ public class Helper {
             }
     }
 
-    static boolean isAccessibilityEnabled(Context context) {
+    public static boolean isAccessibilityEnabled(Context context) {
         try {
             AccessibilityManager am = Helper.getSystemService(context, AccessibilityManager.class);
             return (am != null && am.isEnabled());
@@ -625,7 +625,7 @@ public class Helper {
         }
     }
 
-    static <T extends Object> T getSystemService(Context context, Class<T> type) {
+    public static <T extends Object> T getSystemService(Context context, Class<T> type) {
         return ContextCompat.getSystemService(context.getApplicationContext(), type);
     }
 
@@ -865,7 +865,7 @@ public class Helper {
         }
     }
 
-    static void viewFAQ(Context context, int question) {
+    public static void viewFAQ(Context context, int question) {
         viewFAQ(context, question, true /* Google translate */);
     }
 
@@ -979,7 +979,7 @@ public class Helper {
         return 0;
     }
 
-    static boolean isSupportedDevice() {
+    public static boolean isSupportedDevice() {
         if ("Amazon".equals(Build.BRAND) && Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
         /*
             java.lang.IllegalArgumentException: Comparison method violates its general contract!
@@ -1155,7 +1155,7 @@ public class Helper {
         reportNoViewer(context, new Intent().setData(uri), ex);
     }
 
-    static void reportNoViewer(Context context, @NonNull Intent intent, @Nullable Throwable ex) {
+    public static void reportNoViewer(Context context, @NonNull Intent intent, @Nullable Throwable ex) {
         if (ex != null) {
             if (ex instanceof ActivityNotFoundException && BuildConfig.PLAY_STORE_RELEASE)
                 Log.w(ex);
@@ -1408,7 +1408,7 @@ public class Helper {
         tv.setMaxLines(lines);
     }
 
-    static boolean isNight(Context context) {
+    public static boolean isNight(Context context) {
         // https://developer.android.com/guide/topics/ui/look-and-feel/darktheme#configuration_changes
         int uiMode = context.getResources().getConfiguration().uiMode;
         Log.i("UI mode=0x" + Integer.toHexString(uiMode));
@@ -2168,7 +2168,7 @@ public class Helper {
         }
     }
 
-    static boolean hasValidFingerprint(Context context) {
+    public static boolean hasValidFingerprint(Context context) {
         if (hasValidFingerprint == null) {
             hasValidFingerprint = false;
 
@@ -2215,7 +2215,7 @@ public class Helper {
         }
     }
 
-    static boolean shouldAuthenticate(Context context, boolean pausing) {
+    public static boolean shouldAuthenticate(Context context, boolean pausing) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean biometrics = prefs.getBoolean("biometrics", false);
         String pin = prefs.getString("pin", null);
@@ -2248,7 +2248,7 @@ public class Helper {
         return (autolock && (biometrics || !TextUtils.isEmpty(pin)));
     }
 
-    static void authenticate(final FragmentActivity activity, final LifecycleOwner owner,
+    public static void authenticate(final FragmentActivity activity, final LifecycleOwner owner,
                              Boolean enabled, final
                              Runnable authenticated, final Runnable cancelled) {
         Log.i("Authenticate " + activity);

@@ -3173,14 +3173,14 @@ public class ServiceSynchronize extends ServiceBase implements SharedPreferences
         }
     }
 
-    static void eval(Context context, String reason) {
+    public static void eval(Context context, String reason) {
         start(context,
                 new Intent(context, ServiceSynchronize.class)
                         .setAction("eval")
                         .putExtra("reason", reason));
     }
 
-    static void reload(Context context, Long account, boolean force, String reason) {
+    public static void reload(Context context, Long account, boolean force, String reason) {
         start(context,
                 new Intent(context, ServiceSynchronize.class)
                         .setAction("reload")
@@ -3202,7 +3202,7 @@ public class ServiceSynchronize extends ServiceBase implements SharedPreferences
                         .putExtra("foreground", foreground));
     }
 
-    static void watchdog(Context context) {
+    public static void watchdog(Context context) {
         start(context,
                 new Intent(context, ServiceSynchronize.class)
                         .setAction("watchdog"));

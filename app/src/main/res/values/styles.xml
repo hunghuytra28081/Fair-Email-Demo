@@ -24,7 +24,7 @@
     <attr name="colorInfoBackground" format="reference" />
     <attr name="activatableItemBackground" format="reference" />
 
-    <style name="AppThemeBaseLight" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeBaseLight" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="themeName">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">

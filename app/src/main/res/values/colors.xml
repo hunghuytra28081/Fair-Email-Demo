@@ -2,6 +2,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- https://material.io/resources/color/ -->
 
+    <color name="black_transparent">#CC000000</color>
+    <color name="blue_slide">#2B78EB</color>
+
+    <color name="blue_dodger">#1469FF</color>
+    <color name="grey_white">#A6ECECEC</color>
+    <color name="grey_black">#A6CACACA</color>
+    <color name="black_tran80">#CC000000</color>
+    <color name="bg_grey">#F3F3F3</color>
+
     <color name="colorDebug">#bc3f3f</color>
 
     <color name="colorReadLight">#b3000000</color>

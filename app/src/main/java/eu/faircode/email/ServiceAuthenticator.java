@@ -52,9 +52,9 @@ public class ServiceAuthenticator extends Authenticator {
     private String password;
     private IAuthenticated intf;
 
-    static final int AUTH_TYPE_PASSWORD = 1;
-    static final int AUTH_TYPE_GMAIL = 2;
-    static final int AUTH_TYPE_OAUTH = 3;
+    public static final int AUTH_TYPE_PASSWORD = 1;
+    public static final int AUTH_TYPE_GMAIL = 2;
+    public static final int AUTH_TYPE_OAUTH = 3;
 
     ServiceAuthenticator(
             Context context,
@@ -193,7 +193,7 @@ public class ServiceAuthenticator extends Authenticator {
         }
     }
 
-    static String getAuthTokenType(String type) {
+    public static String getAuthTokenType(String type) {
         // https://developers.google.com/gmail/imap/xoauth2-protocol
         if (TYPE_GOOGLE.equals(type))
             return "oauth2:https://mail.google.com/";

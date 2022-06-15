@@ -500,7 +500,7 @@ public class ServiceUI extends IntentService {
         onSync(aid, fid, fid < 0);
     }
 
-    static void sync(Context context, Long account) {
+    public static void sync(Context context, Long account) {
         try {
             Intent sync = new Intent(context, ServiceUI.class)
                     .setAction(account == null ? "sync" : "sync:" + account);

@@ -146,9 +146,9 @@ public class EntityFolder extends EntityOrder implements Serializable {
 
     static final String INBOX = "Inbox";
     static final String OUTBOX = "Outbox";
-    static final String ARCHIVE = "All";
+    public static final String ARCHIVE = "All";
     static final String DRAFTS = "Drafts";
-    static final String TRASH = "Trash";
+    public static final String TRASH = "Trash";
     static final String JUNK = "Junk";
     static final String SENT = "Sent";
     static final String SYSTEM = "System";
@@ -297,7 +297,7 @@ public class EntityFolder extends EntityOrder implements Serializable {
             this.auto_classify_source = true;
     }
 
-    void setSpecials(EntityAccount account) {
+    public void setSpecials(EntityAccount account) {
         if ("imap.web.de".equals(account.host) && "Unbekannt".equals(name))
             synchronize = true;
     }

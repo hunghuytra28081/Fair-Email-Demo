@@ -96,7 +96,7 @@ public class EmailProvider implements Parcelable {
     public String username;
     public StringBuilder documentation; // html
 
-    enum Discover {ALL, IMAP, SMTP}
+    public enum Discover {ALL, IMAP, SMTP}
 
     enum UserType {LOCAL, EMAIL, VALUE}
 
@@ -176,7 +176,7 @@ public class EmailProvider implements Parcelable {
         return result;
     }
 
-    static List<EmailProvider> loadProfiles(Context context) {
+    public static List<EmailProvider> loadProfiles(Context context) {
         List<EmailProvider> result = null;
 
         try {
@@ -331,7 +331,7 @@ public class EmailProvider implements Parcelable {
     }
 
     @NonNull
-    static List<EmailProvider> fromDomain(Context context, String domain, Discover discover) throws IOException {
+    public static List<EmailProvider> fromDomain(Context context, String domain, Discover discover) throws IOException {
         return fromEmail(context, domain, discover);
     }
 
@@ -1289,9 +1289,9 @@ public class EmailProvider implements Parcelable {
     }
 
     public static class OAuth {
-        boolean enabled;
-        boolean askAccount;
-        String clientId;
+        public boolean enabled;
+        public boolean askAccount;
+        public String clientId;
         String clientSecret;
         boolean pcke;
         String[] scopes;
@@ -1299,11 +1299,11 @@ public class EmailProvider implements Parcelable {
         String tokenEndpoint;
         boolean tokenScopes;
         String redirectUri;
-        String privacy;
+        public String privacy;
         String prompt;
         Map<String, String> parameters;
 
-        boolean askTenant() {
+        public boolean askTenant() {
             return (authorizationEndpoint.contains("{tenant}") ||
                     tokenEndpoint.contains("{tenant}"));
         }

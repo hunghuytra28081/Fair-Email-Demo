@@ -119,12 +119,12 @@ public class EmailService implements AutoCloseable {
 
     private ExecutorService executor = Helper.getBackgroundExecutor(0, "mail");
 
-    static final int PURPOSE_CHECK = 1;
+    public static final int PURPOSE_CHECK = 1;
     static final int PURPOSE_USE = 2;
     static final int PURPOSE_SEARCH = 3;
 
-    static final int ENCRYPTION_SSL = 0;
-    static final int ENCRYPTION_STARTTLS = 1;
+    public static final int ENCRYPTION_SSL = 0;
+    public static final int ENCRYPTION_STARTTLS = 1;
     static final int ENCRYPTION_NONE = 2;
 
     final static int DEFAULT_CONNECT_TIMEOUT = 20; // seconds
@@ -164,7 +164,7 @@ public class EmailService implements AutoCloseable {
         this(context, protocol, realm, encryption, insecure, PURPOSE_USE, debug);
     }
 
-    EmailService(Context context, String protocol, String realm, int encryption, boolean insecure, int purpose, boolean debug) throws NoSuchProviderException {
+    public EmailService(Context context, String protocol, String realm, int encryption, boolean insecure, int purpose, boolean debug) throws NoSuchProviderException {
         this.context = context.getApplicationContext();
         this.protocol = protocol;
         this.insecure = insecure;
@@ -793,7 +793,7 @@ public class EmailService implements AutoCloseable {
         return TextUtils.join(".", c);
     }
 
-    List<EntityFolder> getFolders() throws MessagingException {
+    public List<EntityFolder> getFolders() throws MessagingException {
         List<EntityFolder> folders = new ArrayList<>();
 
         for (Folder ifolder : getStore().getDefaultFolder().list("*")) {
@@ -819,7 +819,7 @@ public class EmailService implements AutoCloseable {
         return (SMTPTransport) iservice;
     }
 
-    Long getMaxSize() throws MessagingException {
+    public Long getMaxSize() throws MessagingException {
         // https://support.google.com/mail/answer/6584#limit
 
         String size;

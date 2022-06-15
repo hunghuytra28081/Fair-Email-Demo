@@ -71,7 +71,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-abstract class ActivityBase extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class ActivityBase extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private int themeId;
     private Context originalContext;
     private boolean visible;
@@ -777,7 +777,7 @@ abstract class ActivityBase extends AppCompatActivity implements SharedPreferenc
         return super.shouldUpRecreateTask(targetIntent);
     }
 
-    Handler getMainHandler() {
+    public Handler getMainHandler() {
         return ApplicationEx.getMainHandler();
     }
 

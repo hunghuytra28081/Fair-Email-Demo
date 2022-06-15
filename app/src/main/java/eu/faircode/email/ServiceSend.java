@@ -896,7 +896,7 @@ public class ServiceSend extends ServiceBase implements SharedPreferences.OnShar
         AlarmManagerCompatEx.setAndAllowWhileIdle(context, am, AlarmManager.RTC_WAKEUP, trigger, pi);
     }
 
-    static void watchdog(Context context) {
+    public static void watchdog(Context context) {
         boot(context);
     }
 }

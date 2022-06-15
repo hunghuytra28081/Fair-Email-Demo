@@ -1527,7 +1527,7 @@ public class Log {
         return formatThrowable(ex, true);
     }
 
-    static String formatThrowable(Throwable ex, boolean sanitize) {
+    public static String formatThrowable(Throwable ex, boolean sanitize) {
         return formatThrowable(ex, " ", sanitize);
     }
 
@@ -1717,7 +1717,7 @@ public class Log {
         return draft;
     }
 
-    static void unexpectedError(FragmentManager manager, Throwable ex) {
+    public static void unexpectedError(FragmentManager manager, Throwable ex) {
         unexpectedError(manager, ex, true);
     }
 

@@ -62,8 +62,8 @@ public class EntityAccount extends EntityOrder implements Serializable {
 
     static final int QUOTA_WARNING = 95; // percent
 
-    static final int TYPE_IMAP = 0;
-    static final int TYPE_POP = 1;
+    public static final int TYPE_IMAP = 0;
+    public static final int TYPE_POP = 1;
 
     @PrimaryKey(autoGenerate = true)
     public Long id;
