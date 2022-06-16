@@ -5,6 +5,7 @@ import android.accounts.AccountManager
 import android.accounts.AccountManager.newChooseAccountIntent
 import android.accounts.AccountManagerCallback
 import android.accounts.AuthenticatorException
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -13,7 +14,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +58,7 @@ class GmailFragment : Fragment() {
             )
             val pm = requireContext().packageManager
             if (intent.resolveActivity(pm) == null) // system whitelisted
-                Log.e("GmailFragment", "newChooseAccountIntent unavailable")
+                Log.e( "newChooseAccountIntent unavailable")
             startActivityForResult(intent, REQUEST_CHOOSE_ACCOUNT)
         }
     }
@@ -66,25 +67,25 @@ class GmailFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         try {
             when (requestCode) {
-                ActivitySetup.REQUEST_CHOOSE_ACCOUNT -> if (resultCode == Activity.RESULT_OK && data != null) onAccountSelected(data) else onNoAccountSelected(resultCode, data)
+                ActivitySetup.REQUEST_CHOOSE_ACCOUNT -> if (resultCode == Activity.RESULT_OK && data != null) onAccountSelected(data) else data?.let { onNoAccountSelected(resultCode, it) }
                 ActivitySetup.REQUEST_DONE -> activity?.finish()
             }
         } catch (ex: Throwable) {
-            eu.faircode.email.Log.e(ex)
+           Log.e(ex)
         }
     }
 
     private fun onAccountSelected(data: Intent) {
         val name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
         val type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE)
-        val handler: Handler = Handler(Looper.getMainLooper())
+        val handler = Handler(Looper.getMainLooper())
         val disabled = getString(R.string.title_setup_advanced_protection)
         var found = false
         val am = AccountManager.get(requireContext().applicationContext)
         val accounts = am.getAccountsByType(type)
         for (account in accounts) if (name.equals(account.name, ignoreCase = true)) {
             found = true
-            eu.faircode.email.Log.i("Requesting token name=" + account.name)
+            Log.i("Requesting token name=" + account.name)
             am.getAuthToken(
                     account,
                     ServiceAuthenticator.getAuthTokenType(type),
@@ -96,20 +97,20 @@ class GmailFragment : Fragment() {
                             require(!future.isCancelled) { "Android failed to return a token" }
                             val token = bundle.getString(AccountManager.KEY_AUTHTOKEN)
                                     ?: throw IllegalArgumentException("Android returned no token")
-                            eu.faircode.email.Log.i("Got token name=" + account.name)
+                            Log.i("Got token name=" + account.name)
                             if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@AccountManagerCallback
                             onAuthorized(name!!, token)
                         } catch (ex: Throwable) {
                             // android.accounts.OperationCanceledException = ServiceDisabled?
-                            if (ex is AuthenticatorException && "ServiceDisabled" == ex.message) ex = IllegalArgumentException(disabled, ex)
-                            eu.faircode.email.Log.e(ex)
+                            if (ex is AuthenticatorException && "ServiceDisabled" == ex.message) /*ex = IllegalArgumentException(disabled, ex)*/
+                            Log.e(ex)
                             if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@AccountManagerCallback
-                            tv_error.text = eu.faircode.email.Log.formatThrowable(ex, false)
-                            grpError.visibility = View.VISIBLE
-                            handler.post(Runnable {
-                                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@Runnable
-                                scroll.smoothScrollTo(0, tv_error.bottom)
-                            })
+                            tv_error.text = Log.formatThrowable(ex, false)
+//                            grpError.visibility = View.VISIBLE
+//                            handler.post(Runnable {
+//                                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@Runnable
+//                                scroll.smoothScrollTo(0, tv_error.bottom)
+//                            })
                         }
                     },
                     handler)
@@ -121,18 +122,29 @@ class GmailFragment : Fragment() {
             crumb["type"] = type
             crumb["count"] = accounts.size.toString()
             crumb["permission"] = Boolean.toString(permission)
-            eu.faircode.email.Log.breadcrumb("Gmail", crumb)
-            eu.faircode.email.Log.e("Account missing")
+            Log.breadcrumb("Gmail", crumb)
+            Log.e("Account missing")
             tv_error.text = getString(R.string.title_no_account)
             grpError.visibility = View.VISIBLE
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun onNoAccountSelected(resultCode: Int, data: Intent) {
+        val am = AccountManager.get(requireContext().applicationContext)
+        val accounts = am.getAccountsByType(GmailState.TYPE_GOOGLE)
+        if (accounts.isEmpty()) Log.e("newChooseAccountIntent without result=$resultCode data=$data")
+        if (resultCode == Activity.RESULT_OK) {
+            tvError.text = getString(R.string.title_no_account) + " (" + accounts.size + ")"
+            grpError.visibility = View.VISIBLE
+        } else ToastEx.makeText(context, android.R.string.cancel, Toast.LENGTH_SHORT).show()
     }
 
     private fun onAuthorized(user: String, token: String) {
         val state = GmailState.jsonDeserialize(token)
         val args = Bundle()
         args.putString("name", edt_name.text.toString().trim { it <= ' ' })
-        args.putBoolean("update", cbUpdate.isChecked)
+//        args.putBoolean("update", cbUpdate.isChecked)
         args.putString("user", user)
         args.putString("password", state.jsonSerializeString())
         object : SimpleTask<Void?>() {
@@ -177,7 +189,7 @@ class GmailFragment : Fragment() {
                             ServiceAuthenticator.AUTH_TYPE_GMAIL, null,
                             user, password,
                             null, null)
-                    folders = iservice.getFolders()
+                    folders = iservice.folders
                 }
                 var max_size: Long
                 val iprotocol = if (provider.smtp.starttls) "smtp" else "smtps"
@@ -190,7 +202,7 @@ class GmailFragment : Fragment() {
                             ServiceAuthenticator.AUTH_TYPE_GMAIL, null,
                             user, password,
                             null, null)
-                    max_size = iservice.getMaxSize()
+                    max_size = iservice.maxSize
                 }
                 var update: EntityAccount? = null
                 val db = DB.getInstance(context)
@@ -272,9 +284,9 @@ class GmailFragment : Fragment() {
                 return null
             }
 
-            private fun onExecuted(args: Bundle, data: Void) {
-                val updated = args.getBoolean("updated")
-                if (updated) {
+            override fun onExecuted(args: Bundle?, data: Void?) {
+                val updated = args?.getBoolean("updated")
+                if (updated == true) {
                     activity?.finish()
                     ToastEx.makeText(context, R.string.title_setup_oauth_updated, Toast.LENGTH_LONG).show()
                 } else {
@@ -286,8 +298,8 @@ class GmailFragment : Fragment() {
             }
 
             override fun onException(args: Bundle, ex: Throwable) {
-                eu.faircode.email.Log.e(ex)
-                if (ex is java.lang.IllegalArgumentException) tv_error.text = ex.message else tv_error.text = eu.faircode.email.Log.formatThrowable(ex, false)
+                Log.e(ex)
+                if (ex is java.lang.IllegalArgumentException) tv_error.text = ex.message else tv_error.text = Log.formatThrowable(ex, false)
                 grpError.visibility = View.VISIBLE
                 Handler(Looper.getMainLooper()).post(Runnable {
                     if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@Runnable
