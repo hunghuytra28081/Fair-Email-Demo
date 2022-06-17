@@ -1,23 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_transparent">
+    android:background="@drawable/bg_splash">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_cloud_slide_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:scaleType="centerCrop"
+            android:translationY="@dimen/_200sdp"
+            android:src="@drawable/ic_cloud_slide_top"
+            android:transitionName="img_cloud_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_cloud_slide_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:translationY="@dimen/_200sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_cloud_slide_middle"
+            android:transitionName="img_cloud_middle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_cloud_slide_bottom"
+            android:transitionName="img_cloud_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_cloud_slide_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_58sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_cloud_slide_bottom_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_150sdp"
+                android:background="@color/white"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/dots_indicator"
-        android:layout_marginBottom="0dp" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/dots_indicator"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_160sdp"/>
 
     <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
         android:id="@+id/dots_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/tv_next"
-        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_next"
         android:layout_marginBottom="@dimen/_15sdp"
         app:dotsColor="#D8D8D8"
         app:dotsCornerRadius="8dp"
@@ -25,20 +80,21 @@
         app:dotsSpacing="4dp"
         app:dotsWidthFactor="2.5"
         app:progressMode="false"
-        app:selectedDotColor="@color/blue_slide" />
+        app:selectedDotColor="@color/blue_theme" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginBottom="@dimen/_14sdp"
+        android:fontFamily="@font/inter_medium"
         android:padding="@dimen/_12sdp"
         android:text="@string/next"
         android:textAllCaps="false"
-        android:textColor="@color/blue_slide"
+        android:textColor="@color/blue_theme"
         android:textSize="@dimen/_13sdp"
         android:textStyle="bold" />
 
@@ -46,14 +102,15 @@
         android:id="@+id/tv_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginBottom="@dimen/_14sdp"
+        android:fontFamily="@font/inter_medium"
         android:padding="@dimen/_12sdp"
         android:text="@string/skip"
         android:textAllCaps="false"
-        android:textColor="@color/blue_slide"
+        android:textColor="@color/blue_theme"
         android:textSize="@dimen/_13sdp"
         android:textStyle="bold" />
 
@@ -61,13 +118,14 @@
         android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginHorizontal="@dimen/_36sdp"
         android:layout_marginBottom="@dimen/_17sdp"
         android:background="@drawable/bg_btn_email_correct"
+        android:fontFamily="@font/inter_light"
         android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_13sdp"
         android:visibility="gone" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

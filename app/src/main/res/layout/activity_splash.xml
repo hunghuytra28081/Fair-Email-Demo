@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash"
+    tools:context=".ui.splash.SplashActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_plane"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/plane"
+        app:layout_constraintBottom_toTopOf="@id/img_cloud_middle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_cloud_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-50dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:src="@drawable/ic_cloud_bottom"
+        android:transitionName="img_cloud_bottom"
+        android:translationX="@dimen/_52sdp"
+        android:translationY="300dp"
+        android:translationZ="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_cloud_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-90dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:src="@drawable/ic_cloud_middle"
+        android:transitionName="img_cloud_middle"
+        android:translationX="@dimen/_58sdp"
+        android:translationY="300dp"
+        android:translationZ="@dimen/_2sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_cloud_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_84sdp"
+        android:layout_marginBottom="-130dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:src="@drawable/ic_cloud_top"
+        android:transitionName="img_cloud_top"
+        android:translationX="@dimen/_85sdp"
+        android:translationY="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,14 +11,14 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="rules_login"><font color='#000000'>By continuing you agree to the Spark</font> <font color='#3D8AFF'><a href="terms:">Terms of Service</a></font> <font color='#000000'>and</font> <font color='#3D8AFF'><a href="privacy:">Privacy Policy</a></font></string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">Email Superpowers</string>
+    <string name="slide_1_desc">Fly through your inbox using cutting-edge email tools.</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">Smart Inbox</string>
+    <string name="slide_2_desc">See what\'s important and clean your inbox in seconds.</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Email for Teams</string>
+    <string name="slide_3_desc">Share, create and discuss emails with your team.</string>
 
     <string name="app_copyright" translatable="false">Copyright &#x24B8; 2018–2022 by M. Bokhorst</string>
     <string name="app_search">FairEmail search</string>

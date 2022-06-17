@@ -24,7 +24,7 @@
     <attr name="colorInfoBackground" format="reference" />
     <attr name="activatableItemBackground" format="reference" />
 
-    <style name="AppThemeBaseLight" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppThemeBaseLight" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="themeName">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">
@@ -50,8 +50,8 @@
         <item name="android:textColorHintInverse">@color/abc_hint_foreground_material_dark</item>
         <item name="android:textColorHighlight">@color/highlighted_text_material_light</item>
         <item name="android:textColorHighlightInverse">@color/highlighted_text_material_dark</item>
-        <item name="android:textColorLink">?attr/colorAccent</item>
-        <item name="android:textColorLinkInverse">?attr/colorAccent</item>
+        <item name="android:textColorLink">@color/blue_theme</item>
+        <item name="android:textColorLinkInverse">@color/blue_theme</item>
         <item name="android:textColorAlertDialogListItem">@color/abc_primary_text_material_light</item>
 
         <item name="colorRead">@color/colorReadLight</item>

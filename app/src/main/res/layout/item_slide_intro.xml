@@ -6,8 +6,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/img_slide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_250sdp"
         app:layout_constraintBottom_toTopOf="@id/viewCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -15,7 +15,8 @@
     <View
         android:id="@+id/viewCenter"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_34sdp"
+        android:layout_height="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,20 +33,25 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title"
+            android:text="Email Superpowers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_12sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_17sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:textColor="@color/black_grey_text"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_desc"
+            android:text="Fly through your inbox using cutting-edge email tools."
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black_grey_text"
+            android:fontFamily="@font/inter_medium"
+            android:textSize="@dimen/_12sdp"
             android:lineSpacingExtra="@dimen/_4sdp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
