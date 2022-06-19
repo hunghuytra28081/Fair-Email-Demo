@@ -55,7 +55,6 @@
             android:layout_marginBottom="-130dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_cloud_slide_top"
-            android:transitionName="img_cloud_top"
             android:translationY="@dimen/_200sdp"
             app:layout_constraintBottom_toTopOf="@id/linear_login"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +68,6 @@
             android:layout_marginBottom="-95dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_cloud_slide_middle"
-            android:transitionName="img_cloud_middle"
             android:translationY="@dimen/_200sdp"
             app:layout_constraintBottom_toTopOf="@id/linear_login"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +81,6 @@
             android:layout_marginBottom="-65dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_cloud_login_bottom_blue"
-            android:transitionName="img_cloud_bottom"
             app:layout_constraintBottom_toTopOf="@id/linear_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

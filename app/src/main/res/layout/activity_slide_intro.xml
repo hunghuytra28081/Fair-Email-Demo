@@ -13,7 +13,6 @@
             android:scaleType="centerCrop"
             android:translationY="@dimen/_200sdp"
             android:src="@drawable/ic_cloud_slide_top"
-            android:transitionName="img_cloud_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +25,6 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_cloud_slide_middle"
-            android:transitionName="img_cloud_middle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

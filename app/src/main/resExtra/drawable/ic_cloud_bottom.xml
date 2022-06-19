@@ -17,8 +17,8 @@
         <item android:offset="0.1" android:color="#FF4FA1EE"/>
         <item android:offset="0.21" android:color="#FF7EBAF2"/>
         <item android:offset="0.33" android:color="#FFA5CFF6"/>
-        <item android:offset="0.45" android:color="#FFC6E1F9"/>
-        <item android:offset="0.58" android:color="#FFDFEEFC"/>
+        <item android:offset="0.45" android:color="#FFFFFFFF"/><!--FFC6E1F9-->
+        <item android:offset="0.58" android:color="#FFDFEEFC"/><!--FFDFEEFC-->
         <item android:offset="0.71" android:color="#FFF1F7FE"/>
         <item android:offset="0.84" android:color="#FFFCFDFF"/>
         <item android:offset="1" android:color="#FFFFFFFF"/>

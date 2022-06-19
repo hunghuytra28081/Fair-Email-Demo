@@ -47,7 +47,6 @@ class SlideIntroActivity : AppCompatActivity() {
                     this, *pairs
             )
             startActivity(intent, option.toBundle())
-            finish()
         }
 
         tv_skip.setOnClickListener {
@@ -59,7 +58,6 @@ class SlideIntroActivity : AppCompatActivity() {
                     this, *pairs
             )
             startActivity(intent, option.toBundle())
-            finish()
         }
     }
 
