@@ -51,7 +51,7 @@ public class FragmentEula extends FragmentBase {
         });
 
         Button btnAgree = view.findViewById(R.id.btnOk);
-        Button btnDisagree = view.findViewById(R.id.btnCancel);
+        Button btnDisagree = view.findViewById(R.id.btn_cancel_eula);
 
         btnAgree.setOnClickListener(new View.OnClickListener() {
             @Override
