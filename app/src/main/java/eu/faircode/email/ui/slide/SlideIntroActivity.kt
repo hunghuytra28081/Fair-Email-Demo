@@ -14,6 +14,7 @@ import eu.faircode.email.extension.transparentStatusBar
 import eu.faircode.email.extension.viewInVisible
 import eu.faircode.email.extension.viewVisible
 import eu.faircode.email.ui.login.LoginActivity
+import eu.faircode.email.ui.main.HomeMainActivity
 import eu.faircode.email.ui.slide.adapter.SlideIntroPagerAdapter
 import kotlinx.android.synthetic.main.activity_slide_intro.*
 
@@ -35,7 +36,7 @@ class SlideIntroActivity : AppCompatActivity() {
         }
 
         btn_next.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, HomeMainActivity::class.java)
             val pairs: Array<Pair<View, String>?> = arrayOfNulls(1)
             pairs[0] = Pair(constraint_cloud_slide_bottom, "img_cloud_bottom")
 
@@ -46,7 +47,7 @@ class SlideIntroActivity : AppCompatActivity() {
         }
 
         tv_skip.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, HomeMainActivity::class.java)
             val option = ActivityOptions.makeSceneTransitionAnimation(
                     this, constraint_cloud_slide_bottom, "img_cloud_bottom"
             )

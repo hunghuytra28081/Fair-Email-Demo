@@ -182,7 +182,7 @@ public class FragmentBase extends Fragment {
         }
     }
 
-    protected void finish() {
+    public void finish() {
         if (finished)
             return;
         finished = true;
@@ -665,7 +665,7 @@ public class FragmentBase extends Fragment {
                 .show();
     }
 
-    Handler getMainHandler() {
+    public Handler getMainHandler() {
         return ApplicationEx.getMainHandler();
     }
 }

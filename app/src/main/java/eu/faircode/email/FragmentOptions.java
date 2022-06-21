@@ -268,7 +268,7 @@ public class FragmentOptions extends FragmentBase {
     }
 
     @Override
-    protected void finish() {
+    public void finish() {
         onExit();
     }
 

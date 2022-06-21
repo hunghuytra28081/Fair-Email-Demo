@@ -79,7 +79,7 @@ private fun Activity.setWindowFlag(bits: Int, on: Boolean) {
     win.attributes = winParams
 }
 
-fun View.setOnSingerClick(debounceTime: Long = 500, action: () -> Unit) {
+fun View.setOnSingerClick(debounceTime: Long = 600, action: () -> Unit) {
 
     this.setOnClickListener(object : View.OnClickListener {
         private var lastClickTime: Long = 0
@@ -93,22 +93,22 @@ fun View.setOnSingerClick(debounceTime: Long = 500, action: () -> Unit) {
     })
 }
 
-fun customTextViewAgree(activity: Activity, view: TextView, viewMoveTop: View, viewMoveTop2: View) {
+fun customTextViewAgree(fragment: Fragment, view: TextView, viewMoveTop: View, viewMoveTop2: View) {
     val spanTxt = SpannableStringBuilder(
         "By continuing you agree to the Spark ")
     spanTxt.append("Terms of service")
     spanTxt.setSpan(object : ClickableSpan() {
         override fun onClick(widget: View) {
-            activity.hideKeyboard()
-            viewMoveTop.animate().translationY(0F).duration = 1000
+            fragment.hideKeyboard()
+            viewMoveTop.animate().translationY(0F).duration = 800
         }
     }, spanTxt.length - "Term of services".length, spanTxt.length, 0)
     spanTxt.append(" and")
     spanTxt.append(" Privacy Policy")
     spanTxt.setSpan(object : ClickableSpan() {
         override fun onClick(widget: View) {
-            activity.hideKeyboard()
-            viewMoveTop2.animate().translationY(0F).duration = 1000
+            fragment.hideKeyboard()
+            viewMoveTop2.animate().translationY(0F).duration = 800
         }
     }, spanTxt.length - " Privacy Policy".length, spanTxt.length, 0)
     view.movementMethod = LinkMovementMethod.getInstance()

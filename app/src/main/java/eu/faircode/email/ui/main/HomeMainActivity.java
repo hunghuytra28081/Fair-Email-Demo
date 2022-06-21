@@ -19,8 +19,6 @@ import java.util.Date;
 import java.util.List;
 
 import eu.faircode.email.ActivityBase;
-import eu.faircode.email.ActivityMain;
-import eu.faircode.email.ActivitySetup;
 import eu.faircode.email.ActivityView;
 import eu.faircode.email.ApplicationEx;
 import eu.faircode.email.BuildConfig;
@@ -36,6 +34,7 @@ import eu.faircode.email.ServiceSend;
 import eu.faircode.email.ServiceSynchronize;
 import eu.faircode.email.ServiceUI;
 import eu.faircode.email.SimpleTask;
+import eu.faircode.email.ui.login.LoginActivity;
 import eu.faircode.email.ui.slide.SlideIntroActivity;
 
 
@@ -227,7 +226,7 @@ public class HomeMainActivity extends ActivityBase implements FragmentManager.On
                             }
                         }, SERVICE_START_DELAY);
                     } else {
-                        Intent setup = new Intent(HomeMainActivity.this, ActivitySetup.class)
+                        Intent setup = new Intent(HomeMainActivity.this, LoginActivity.class)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(setup, options);
                     }
@@ -297,8 +296,9 @@ public class HomeMainActivity extends ActivityBase implements FragmentManager.On
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportFragmentManager().addOnBackStackChangedListener(this);
 
-            Intent intentSlide = new Intent(HomeMainActivity.this, SlideIntroActivity.class);
-            startActivity(intentSlide);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, new FragmentEula()).addToBackStack("eula");
+            fragmentTransaction.commit();
         }
     }
 

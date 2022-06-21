@@ -4,80 +4,68 @@ import android.Manifest
 import android.accounts.AccountManager
 import android.accounts.AccountManagerCallback
 import android.accounts.AuthenticatorException
-import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Lifecycle
-import com.bugsnag.android.getActivityManager
 import eu.faircode.email.*
-import eu.faircode.email.extension.addFragment
 import eu.faircode.email.extension.customTextViewAgree
 import eu.faircode.email.extension.isValidEmail
 import eu.faircode.email.extension.setAnimationCloud
-import eu.faircode.email.ui.login.account.ChooseAccountActivity
-import eu.faircode.email.utils.Constant
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_gmail.*
-import kotlinx.android.synthetic.main.fragment_gmail_detail.*
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.lang.Boolean
 import java.util.*
 import java.util.concurrent.TimeUnit
-import kotlin.collections.HashMap
 
-class LoginActivity : AppCompatActivity() {
+class LoginFragment : FragmentBase() {
 
-    val constraintTerms: ConstraintLayout by lazy { constraint_terms }
-    val constraintPrivacy: ConstraintLayout by lazy { constraint_privacy }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    private val activity by lazy { requireActivity() as LoginActivity }
+    private val constraintTerms by lazy { activity.constraintTerms }
+    private val constraintPrivacy by lazy { activity.constraintPrivacy }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_login, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
         initHandles()
     }
 
     private fun initView() {
-        addFragment(R.id.frame_login,LoginFragment.newInstance())
+        img_cloud_login_middle.setAnimationCloud(1500)
+        img_cloud_login_top.setAnimationCloud(2000)
+        checkEmailButton()
+    }
+
+    private fun checkEmailButton() {
+        edt_email.doOnTextChanged { text, start, before, count ->
+            if (text!!.isValidEmail()) {
+                layout_email.endIconDrawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check)
+                btn_start.setBackgroundResource(R.drawable.bg_btn_email_correct)
+            } else {
+                layout_email.endIconDrawable = null
+                btn_start.setBackgroundResource(R.drawable.bg_btn_email_wrong)
+            }
+        }
     }
 
     private fun initHandles() {
-//        customTextViewAgree(this, terms_and_privacy, constraint_terms, constraint_privacy)
+        customTextViewAgree(this, terms_and_privacy, constraintTerms, constraintPrivacy)
 
-//        btn_add.setOnClickListener {
-//            val intent = Intent(this, ChooseAccountActivity::class.java)
-//            startActivity(intent)
-//        }
-
-        img_back_terms.setOnClickListener {
-            constraint_terms.animate().translationY(3500F).duration = 800
-        }
-
-        img_back_privacy.setOnClickListener {
-            constraint_privacy.animate().translationY(3500F).duration = 800
-        }
-    }
-
-        /*tv_logo.setOnClickListener {
-            val intent = Intent(this@LoginActivity, ActivityView::class.java)
-            startActivity(intent)
-        }*/
-
-        /*google_sign_in.setOnClickListener {
-
+        google_sign_in.setOnClickListener {
             try {
                 val intent = AccountManager.newChooseAccountIntent(
                         null,
@@ -88,42 +76,41 @@ class LoginActivity : AppCompatActivity() {
                         null,
                         null
                 )
-                val pm = this.packageManager
+                val pm = requireContext().packageManager
                 if (intent.resolveActivity(pm) == null) // system whitelisted
                     android.util.Log.e("GmailFragment", "newChooseAccountIntent unavailable")
                 startActivityForResult(intent, ActivitySetup.REQUEST_CHOOSE_ACCOUNT)
             } catch (ex: Throwable) {
                 if (ex is IllegalArgumentException)
-                    Toast.makeText(this, ex.stackTraceToString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), ex.stackTraceToString(), Toast.LENGTH_SHORT).show()
                 else
                     Log.formatThrowable(ex, false)
-                Toast.makeText(this, ex.stackTraceToString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), ex.stackTraceToString(), Toast.LENGTH_SHORT).show()
             }
         }
-    }*/
-/*
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        android.util.Log.e("GmailFragment123", data.toString())
         try {
             when (requestCode) {
                 ActivitySetup.REQUEST_CHOOSE_ACCOUNT ->
-                    if (resultCode == RESULT_OK && data != null) onAccountSelected(data)
+                    if (resultCode == Activity.RESULT_OK && data != null) onAccountSelected(data)
                     else data?.let { onNoAccountSelected(resultCode, it) }
                 ActivitySetup.REQUEST_DONE -> finish()
             }
         } catch (ex: Throwable) {
             Log.e(ex)
         }
-    }*/
+    }
 
-   /* private fun onAccountSelected(data: Intent) {
+    private fun onAccountSelected(data: Intent) {
         val name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
         val type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE)
-        val handler = Handler(Looper.getMainLooper())
+        val handler: Handler = mainHandler
         val disabled = getString(R.string.title_setup_advanced_protection)
         var found = false
-        val am = AccountManager.get(this.applicationContext)
+        val am = AccountManager.get(context?.applicationContext ?: requireContext())
         val accounts = am.getAccountsByType(type)
         for (account in accounts) if (name.equals(account.name, ignoreCase = true)) {
             found = true
@@ -132,72 +119,51 @@ class LoginActivity : AppCompatActivity() {
                     account,
                     ServiceAuthenticator.getAuthTokenType(type),
                     Bundle(),
-                    this,
+                    activity,
                     AccountManagerCallback { future ->
                         try {
                             val bundle = future.getResult(GET_TOKEN_TIMEOUT, TimeUnit.MILLISECONDS)
                             require(!future.isCancelled) { "Android failed to return a token" }
                             val token = bundle.getString(AccountManager.KEY_AUTHTOKEN)
-                                    ?: throw IllegalArgumentException("Android returned no token")
+                                    ?: throw java.lang.IllegalArgumentException("Android returned no token")
                             Log.i("Got token name=" + account.name)
                             if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@AccountManagerCallback
-                            onAuthorized(name!!, token)
+                            name?.let { onAuthorized(it, token) }
+//                            (parentFragment as FragmentBase).finish()
                         } catch (ex: Throwable) {
                             // android.accounts.OperationCanceledException = ServiceDisabled?
-                            if (ex is AuthenticatorException && "ServiceDisabled" == ex.message) *//*ex = IllegalArgumentException(disabled, ex)*//*
-                                Log.e(ex)
+                            if (ex is AuthenticatorException && "ServiceDisabled" == ex.message) java.lang.IllegalArgumentException(disabled, ex)
+                            Log.e(ex)
                             if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@AccountManagerCallback
-                            Log.formatThrowable(ex, false)
-//                            grpError.visibility = View.VISIBLE
-//                            handler.post(Runnable {
-//                                if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@Runnable
-//                                scroll.smoothScrollTo(0, tv_error.bottom)
-//                            })
                         }
                     },
                     handler)
             break
         }
         if (!found) {
-            val permission = Helper.hasPermission(this, Manifest.permission.GET_ACCOUNTS)
+            val permission = Helper.hasPermission(context, Manifest.permission.GET_ACCOUNTS)
             val crumb: MutableMap<String, String?> = HashMap()
             crumb["type"] = type
             crumb["count"] = accounts.size.toString()
             crumb["permission"] = Boolean.toString(permission)
             Log.breadcrumb("Gmail", crumb)
             Log.e("Account missing")
-//            tv_error.text = getString(R.string.title_no_account)
-//            grpError.visibility = View.VISIBLE
         }
-    }*/
-/*
-    private fun checkEmailButton() {
-        edt_email.doOnTextChanged { text, start, before, count ->
-            if (text!!.isValidEmail()) {
-                layout_email.endIconDrawable = ContextCompat.getDrawable(this, R.drawable.ic_check)
-                btn_start.setBackgroundResource(R.drawable.bg_btn_email_correct)
-            } else {
-                layout_email.endIconDrawable = null
-                btn_start.setBackgroundResource(R.drawable.bg_btn_email_wrong)
-            }
-        }
-    }*/
-/*
-    @SuppressLint("SetTextI18n")
+    }
+
     private fun onNoAccountSelected(resultCode: Int, data: Intent) {
-        val am = AccountManager.get(applicationContext)
+        val am = AccountManager.get(context?.applicationContext ?: requireContext())
         val accounts = am.getAccountsByType(GmailState.TYPE_GOOGLE)
         if (accounts.isEmpty()) Log.e("newChooseAccountIntent without result=$resultCode data=$data")
-        if (resultCode == RESULT_OK) {
-            tvError.text = getString(R.string.title_no_account) + " (" + accounts.size + ")"
-//            grpError.visibility = View.VISIBLE
-        } else ToastEx.makeText(this, android.R.string.cancel, Toast.LENGTH_SHORT).show()
-    }*/
+        if (resultCode == Activity.RESULT_OK) {
+            ToastEx.makeText(context, android.R.string.ok, Toast.LENGTH_SHORT).show()
+        } else ToastEx.makeText(context, android.R.string.cancel, Toast.LENGTH_SHORT).show()
+    }
 
-    /*private fun onAuthorized(user: String, token: String) {
+    private fun onAuthorized(user: String, token: String) {
         val state = GmailState.jsonDeserialize(token)
         val args = Bundle()
-        args.putString("name", edt_name.text.toString().trim { it <= ' ' })
+        args.putString("name", edt_email.text.toString().trim { it <= ' ' })
 //        args.putBoolean("update", cbUpdate.isChecked)
         args.putString("user", user)
         args.putString("password", state.jsonSerializeString())
@@ -342,7 +308,7 @@ class LoginActivity : AppCompatActivity() {
                 val updated = args?.getBoolean("updated")
                 if (updated == true) {
                     finish()
-                    ToastEx.makeText(this@LoginActivity, R.string.title_setup_oauth_updated, Toast.LENGTH_LONG).show()
+                    ToastEx.makeText(requireContext(), R.string.title_setup_oauth_updated, Toast.LENGTH_LONG).show()
                 }
 //                else {
 //                    val fragment = FragmentDialogAccount()
@@ -354,8 +320,8 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onException(args: Bundle, ex: Throwable) {
                 Log.e(ex)
-                if (ex is java.lang.IllegalArgumentException) *//*tv_error.text =*//* Log.formatThrowable(ex, false)
-                else *//*tv_error.text =*//* Log.formatThrowable(ex, false)
+                if (ex is java.lang.IllegalArgumentException) /*tv_error.text =*/ Log.formatThrowable(ex, false)
+                else /*tv_error.text =*/ Log.formatThrowable(ex, false)
 //                grpError.visibility = View.VISIBLE
 //                Handler(Looper.getMainLooper()).post(Runnable {
 //                    if (!lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) return@Runnable
@@ -364,19 +330,10 @@ class LoginActivity : AppCompatActivity() {
             }
         }.execute(this, args, "setup:gmail")
 
-    }*/
-
-    override fun onBackPressed() {
-        if (constraint_terms.translationY == 0F) {
-            constraint_terms.animate().translationY(3500F).duration = 1000
-        } else if (constraint_privacy.translationY == 0F) {
-            constraint_privacy.animate().translationY(3500F).duration = 1000
-        } else {
-            finish()
-        }
     }
 
     companion object {
         private const val GET_TOKEN_TIMEOUT = 20 * 1000L
+        fun newInstance() = LoginFragment()
     }
 }
