@@ -1,12 +1,9 @@
 package eu.faircode.email.data.repository
 
-import eu.faircode.email.data.resource.MailDataSource
-import eu.faircode.email.data.resource.local.MenuLeftDAO
-import eu.faircode.email.data.resource.local.MenuLeftEntity
+import eu.faircode.email.data.resource.local.dao.MenuLeftDAO
+import eu.faircode.email.data.resource.local.entity.MenuLeftEntity
 
-class MailRepository(
-        private val dao: MenuLeftDAO
-) {
+class MailRepository(private val dao: MenuLeftDAO) {
 
     fun getAllMenuLeft() = dao.getAll()
 

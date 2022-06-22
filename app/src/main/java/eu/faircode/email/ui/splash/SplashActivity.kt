@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import eu.faircode.email.R
 import eu.faircode.email.extension.setAnimationCloud
 import eu.faircode.email.extension.transparentStatusBar
+import eu.faircode.email.ui.leftmenu.MainMenuLeftActivity
 import eu.faircode.email.ui.slide.SlideIntroActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -47,15 +48,17 @@ class SplashActivity : AppCompatActivity() {
 
     private fun initHandles() {
         Handler(Looper.getMainLooper()).postDelayed({
-
-            val intent = Intent(this, SlideIntroActivity::class.java)
-//            val pairs: Array<Pair<View, String>?> = arrayOfNulls(1)
-//            pairs[0] = Pair(img_cloud_bottom, "img_cloud_bottom")
-            val option = ActivityOptions.makeSceneTransitionAnimation(
-                    this, img_cloud_bottom, "img_cloud_bottom"
-            )
-            startActivity(intent, option.toBundle())
-            finish()
+            /*
+                     val intent = Intent(this, SlideIntroActivity::class.java)
+         //            val pairs: Array<Pair<View, String>?> = arrayOfNulls(1)
+         //            pairs[0] = Pair(img_cloud_bottom, "img_cloud_bottom")
+                     val option = ActivityOptions.makeSceneTransitionAnimation(
+                             this, img_cloud_bottom, "img_cloud_bottom"
+                     )
+                     startActivity(intent, option.toBundle())
+                     finish()*/
+            startActivity(Intent(this, MainMenuLeftActivity::class.java))
         }, 1000)
+
     }
 }

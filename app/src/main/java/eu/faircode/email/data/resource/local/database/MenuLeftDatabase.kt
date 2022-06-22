@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import eu.faircode.email.data.resource.local.MenuLeftDAO
-import eu.faircode.email.data.resource.local.MenuLeftEntity
+import eu.faircode.email.data.resource.local.dao.MenuLeftDAO
+import eu.faircode.email.data.resource.local.entity.MenuLeftEntity
 
 @Database(entities = [MenuLeftEntity::class], version = 1)
 abstract class MenuLeftDatabase: RoomDatabase() {

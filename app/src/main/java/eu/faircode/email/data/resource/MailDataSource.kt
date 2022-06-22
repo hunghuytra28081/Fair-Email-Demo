@@ -1,10 +1,11 @@
 package eu.faircode.email.data.resource
 
-import eu.faircode.email.data.resource.local.MenuLeftEntity
+import androidx.lifecycle.LiveData
+import eu.faircode.email.data.resource.local.entity.MenuLeftEntity
 
 class MailDataSource {
     interface Local{
-        fun getAllMenuLeft(): List<MenuLeftEntity>
+        fun getAllMenuLeft(): LiveData<List<MenuLeftEntity>>
 
         suspend fun insertMenuLeft(item : MenuLeftEntity)
 

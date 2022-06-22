@@ -1,4 +1,4 @@
-package eu.faircode.email.data.resource.local
+package eu.faircode.email.data.resource.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

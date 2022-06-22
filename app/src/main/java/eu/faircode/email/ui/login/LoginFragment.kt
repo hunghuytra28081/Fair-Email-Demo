@@ -92,6 +92,7 @@ class LoginFragment : FragmentBase() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        android.util.Log.e("gmail123",data.toString())
         try {
             when (requestCode) {
                 ActivitySetup.REQUEST_CHOOSE_ACCOUNT ->
@@ -105,6 +106,7 @@ class LoginFragment : FragmentBase() {
     }
 
     private fun onAccountSelected(data: Intent) {
+        android.util.Log.e("gmail123",data.toString())
         val name = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME)
         val type = data.getStringExtra(AccountManager.KEY_ACCOUNT_TYPE)
         val handler: Handler = mainHandler

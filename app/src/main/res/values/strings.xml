@@ -9,6 +9,9 @@
     <string name="more_folders">More Folders</string>
     <string name="save">Save</string>
     <string name="inbox">Inbox</string>
+    <string name="settings">Settings</string>
+
+    <!--Menu Left-->
 
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="terms_of_service">Terms of Service</string>
