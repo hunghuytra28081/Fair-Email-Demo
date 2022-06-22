@@ -15,15 +15,15 @@ abstract class MenuLeftDatabase: RoomDatabase() {
         private var INSTANCE: MenuLeftDatabase? = null
 
         fun getDatabase(context: Context): MenuLeftDatabase {
-            val ignoreInstant = INSTANCE
-            if (ignoreInstant != null) {
-                return ignoreInstant
+            val menuLeftInstant = INSTANCE
+            if (menuLeftInstant != null) {
+                return menuLeftInstant
             }
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                         context.applicationContext,
                         MenuLeftDatabase::class.java,
-                        "file_share_db"
+                        "menu_left_db"
                 ).allowMainThreadQueries().build()
                 INSTANCE = instance
                 return instance

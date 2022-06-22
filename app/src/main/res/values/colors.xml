@@ -174,4 +174,6 @@
     <color name="solarizedGreen">#859900</color>
 
     <color name="black_grey_text">#222222</color>
+    <color name="black_grey_hide">#7E7F86</color>
+    <color name="white_grey">#DEDEDE</color>
 </resources>

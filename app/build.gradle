@@ -389,7 +389,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     //SDP
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
 
@@ -456,9 +456,10 @@ dependencies {
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-core
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-compiler
-    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata-core:$lifecycle_version"
+    //noinspection LifecycleAnnotationProcessorWithJava8
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     // https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-extensions

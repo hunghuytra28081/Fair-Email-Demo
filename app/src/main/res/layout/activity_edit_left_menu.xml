@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        app:layout_constraintDimensionRatio="360: 67"
+        app:layout_constraintDimensionRatio="410: 67"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -107,7 +107,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7E7F86"
+                android:textColor="@color/black_grey_hide"
                 android:text="@string/folders"
                 android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/inter_medium"
@@ -117,10 +117,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#DEDEDE"/>
+                android:background="@color/white_grey"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_list_delete"
+                android:id="@+id/rcv_list_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -131,7 +131,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7E7F86"
+                android:textColor="@color/black_grey_hide"
                 android:text="@string/more_folders"
                 android:textSize="@dimen/_12sdp"
                 android:fontFamily="@font/inter_medium"
@@ -141,10 +141,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#DEDEDE"/>
+                android:background="@color/white_grey"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_list_add"
+                android:id="@+id/rcv_list_more_menu"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
                 tools:listitem="@layout/item_more_menu"
@@ -155,7 +155,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7E7F86"
+                android:textColor="@color/black_grey_hide"
                 android:text="Maria0348@gmail.com"
                 android:textSize="@dimen/_11sdp"
                 android:fontFamily="@font/inter_medium"
@@ -165,7 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:background="#DEDEDE"/>
+                android:background="@color/white_grey"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

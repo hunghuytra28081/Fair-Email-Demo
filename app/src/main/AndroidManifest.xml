@@ -98,10 +98,10 @@ uses-feature
         android:supportsRtl="true"
         android:theme="@style/AppThemeBlueOrangeLight">
         <activity
-            android:name=".MainMenuLeftActivity"
+            android:name=".ui.leftmenu.MainMenuLeftActivity"
             android:exported="false" />
         <activity
-            android:name=".EditLeftMenuActivity"
+            android:name=".ui.leftmenu.EditMenuLeftActivity"
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"

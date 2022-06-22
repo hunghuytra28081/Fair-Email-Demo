@@ -14,8 +14,8 @@ interface MenuLeftDAO {
     fun getAll(): LiveData<List<MenuLeftEntity>>
 
     @Insert
-    suspend fun insert(item : MenuLeftEntity)
+    suspend fun insert(item : List<MenuLeftEntity>)
 
     @Delete
-    suspend fun delete(item: MenuLeftEntity)
+    suspend fun delete(item: List<MenuLeftEntity>)
 }

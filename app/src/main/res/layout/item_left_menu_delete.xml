@@ -55,7 +55,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0.6dp"
-        android:background="#DEDEDE"
+        android:background="@color/white_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_name_item_left_menu" />

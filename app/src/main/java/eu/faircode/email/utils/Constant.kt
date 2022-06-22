@@ -32,4 +32,6 @@ object Constant {
     const val ACTION_MANAGE_CERTIFICATES = BuildConfig.APPLICATION_ID + ".MANAGE_CERTIFICATES"
     const val ACTION_IMPORT_CERTIFICATE = BuildConfig.APPLICATION_ID + ".IMPORT_CERTIFICATE"
     const val ACTION_SETUP_MORE = BuildConfig.APPLICATION_ID + ".SETUP_MORE"
+
+    const val PRE_ROOM = "preference_room"
 }

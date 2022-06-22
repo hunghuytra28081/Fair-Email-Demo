@@ -7,8 +7,8 @@ class MailDataSource {
     interface Local{
         fun getAllMenuLeft(): LiveData<List<MenuLeftEntity>>
 
-        suspend fun insertMenuLeft(item : MenuLeftEntity)
+        suspend fun insertMenuLeft(list : List<MenuLeftEntity>)
 
-        suspend fun deleteMenuLeft(item: MenuLeftEntity)
+        suspend fun deleteMenuLeft(list: List<MenuLeftEntity>)
     }
 }
